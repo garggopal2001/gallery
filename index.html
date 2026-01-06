@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GG Gallery - Professional Photo & Video Archive">
+    <title>GG Gallery</title>
+    
+    <!-- External Dependencies: Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Data Source -->
+    <script src="gallery_data.js"></script>
+
+    <!-- Application Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="icon-btn sidebar-toggle" onclick="app.toggleSidebar()" aria-label="Toggle Sidebar">
+                <i data-lucide="menu"></i>
+            </button>
+            <a href="#" class="brand" onclick="app.navigateHome()">
+                <i data-lucide="aperture"></i>
+                <span>GG Gallery</span>
+            </a>
+        </div>
+
+        <div class="nav-right">
+            <div class="search-bar">
+                <i data-lucide="search" class="search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search..." id="searchInput">
+            </div>
+
+            <div class="nav-controls">
+                <a href="#" class="icon-btn social-link" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+                <a href="#" class="icon-btn social-link" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+                <a href="#" class="icon-btn social-link" aria-label="YouTube"><i data-lucide="youtube"></i></a>
+                
+                <div class="nav-divider"></div>
+                
+                <button class="icon-btn" onclick="app.toggleTheme()" aria-label="Toggle Theme">
+                    <i data-lucide="moon" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. MAIN APPLICATION LAYOUT -->
+    <div class="app-layout">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-content" id="navTree" role="tree">
+                <!-- Dynamic Tree Content -->
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Content Wrapper (pushes footer down) -->
+            <div class="content-wrapper">
+                <div class="breadcrumb-container" id="breadcrumbs"></div>
+
+                <div class="gallery-header">
+                    <div>
+                        <h1 class="gallery-title" id="pageTitle">Home</h1>
+                        <div class="gallery-meta" id="pageMeta">Loading...</div>
+                    </div>
+                </div>
+
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Dynamic Grid Cards -->
+                </div>
+            </div>
+
+            <!-- Sticky Footer -->
+            <footer class="footer">
+                Built with ❤️ by Gopal and Gemini Pro.
+            </footer>
+        </main>
+    </div>
+
+    <!-- 3. MEDIA VIEWER OVERLAY (MODAL) -->
+    <div class="media-viewer" id="mediaViewer" tabindex="-1">
+        <div class="viewer-toolbar">
+            <div class="viewer-info">
+                <span class="viewer-filename" id="viewerTitle">Filename.jpg</span>
+                <span class="viewer-counter" id="viewerCounter">1 / 1</span>
+            </div>
+            <div class="viewer-controls">
+                <button class="icon-btn" id="btnZoomOut" aria-label="Zoom Out"><i data-lucide="minus"></i></button>
+                <button class="icon-btn" id="btnZoomIn" aria-label="Zoom In"><i data-lucide="plus"></i></button>
+                <button class="icon-btn" id="btnSlideshow" aria-label="Toggle Slideshow"><i data-lucide="play"></i></button>
+                <button class="icon-btn" onclick="mediaPlayer.toggleFullscreen()" aria-label="Fullscreen"><i data-lucide="expand"></i></button>
+                <button class="icon-btn" onclick="mediaPlayer.close()" aria-label="Close"><i data-lucide="x"></i></button>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button class="nav-arrow nav-prev" onclick="mediaPlayer.prev()" aria-label="Previous Media"><i data-lucide="chevron-left"></i></button>
+        <button class="nav-arrow nav-next" onclick="mediaPlayer.next()" aria-label="Next Media"><i data-lucide="chevron-right"></i></button>
+        
+        <div class="viewer-content" id="viewerContent">
+            <div class="loader" id="viewerLoader"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
